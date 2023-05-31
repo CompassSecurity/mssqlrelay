@@ -106,7 +106,7 @@ def get_logon_session():
     if platform.system().lower() != "windows":
         raise Exception("Cannot use SSPI on non-Windows platform")
 
-    from certipy.lib.sspi import get_tgt
+    from mssqlrelay.lib.sspi import get_tgt
     from winacl.functions.highlevel import get_logon_info
 
     info = get_logon_info()

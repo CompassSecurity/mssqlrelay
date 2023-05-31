@@ -26,7 +26,7 @@ class MyMSSQLAttackClient(MSSQLAttack):
         # do stuff
         shell = SQLSHELL(self.client)
         shell.cmdloop()
-        self.mssql_relay.shutdown()
+        #self.mssql_relay.shutdown()
 
 
 class MSSQLRelay:

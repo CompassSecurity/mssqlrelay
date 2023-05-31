@@ -13,6 +13,7 @@ class MSSQLInstance:
         self.instance = spn.split("/")[1]
         self.hostname, self.port = self.instance.split(":")
 
+
 class CheckAll:
     def __init__(
             self,
@@ -66,8 +67,26 @@ class CheckAll:
 
     def checkall(self):
         instances = self.get_domain_mssql_instances()
+        logging.info("SPNs in domain %s:" % self.target.domain)
         for instance in instances:
-            check = Check(Target.create(dc_ip=self.target.dc_ip,remote_name=instance.hostname, mssql_port=instance.port))
+            logging.info("  - %s (running as %s)" % (instance.spn, instance.serviceAccount))
+        logging.info("Checking found instances ...")
+        for instance in instances:
+            check = Check(
+                Target.create(
+                    self.target.domain,
+                    self.target.username,
+                    self.target.password,
+                    self.target.hashes,
+                    remote_name=instance.hostname,
+                    do_kerberos=self.target.do_kerberos,
+                    use_sspi=self.target.use_sspi,
+                    windows_auth=self.target.windows_auth,
+                    aes=self.target.aes,
+                    dc_ip=self.target.dc_ip,
+                    mssql_port=instance.port
+                )
+            )
             check.check()
 
 def entry(options: argparse.Namespace) -> None:

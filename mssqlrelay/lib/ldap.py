@@ -2,9 +2,9 @@ import ssl
 from typing import Any, List, Union
 
 import ldap3
-from certipy.lib.kerberos import get_kerberos_type1
-from certipy.lib.logger import logging
-from certipy.lib.target import Target
+from mssqlrelay.lib.kerberos import get_kerberos_type1
+from mssqlrelay.lib.logger import logging
+from mssqlrelay.lib.target import Target
 from ldap3.core.results import RESULT_STRONGER_AUTH_REQUIRED
 from ldap3.protocol.microsoft import security_descriptor_control
 
