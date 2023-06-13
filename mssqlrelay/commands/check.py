@@ -293,7 +293,7 @@ class Check:
             tds = self.connection.recvTDS()
             response = TDS_PRELOGIN(tds['Data'])
             version = MSSQL_VERSION(response['Version'])
-            encryption = ("" if response['Encryption'] == TDS_ENCRYPT_NOT_SUP else "not ") + "enforced"
+            encryption = ("not " if response['Encryption'] == TDS_ENCRYPT_NOT_SUP else "") + "enforced"
             logging.info("%s (%s:%s)" % (self.target.remote_name, self.target.target_ip, self.target.mssql_port))
             logging.info("  -  Version: %s" % version)
             logging.info("  -  Encryption: %s" % encryption)
