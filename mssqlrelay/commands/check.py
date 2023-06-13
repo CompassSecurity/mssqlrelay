@@ -222,10 +222,25 @@ class Check:
             logged_in = self.checkConnection()
             if logged_in:
                 self.checkPrivileges()
+                self.checkSysadmin()
 
     # TODO
     def getInstances(self):
         self.connection.getInstances()
+
+    def checkSysadmin(self):
+        # Adapted from https://github.com/NetSPI/PowerUpSQL/blob/54d73c340611a00e1a2c683c96e7057f7dc35e49/PowerUpSQL.ps1#L9141
+        QUERY = "SELECT IS_SRVROLEMEMBER('sysadmin')"
+        try:
+            rows = self.connection.RunSQLQuery(self.connection.currentDB, QUERY)
+            if len(rows) > 0 and rows[0][""] != None and rows[0][""] == 1:
+                logging.info("  -  SysAdmin: Yes")
+            else:
+                logging.info("  -  SysAdmin: No")
+
+        except Exception:
+            logging.error("An error occured.")
+            raise
 
     def checkPrivileges(self):
         # From https://github.com/NetSPI/PowerUpSQL/blob/master/PowerUpSQL.ps1#L10560
@@ -244,6 +259,8 @@ class Check:
                 "AND pm.state_desc like 'GRANT'" \
                 "" % self.db_user
         try:
+            # Too big packets seem not to work
+            self.connection.packetSize = 16275
             rows = self.connection.RunSQLQuery(self.connection.currentDB, QUERY)
             privileges = []
             for row in rows:
