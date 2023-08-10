@@ -1,7 +1,5 @@
 # MSSQLRelay
 
-[![Upload Python Package](https://github.com/compasssecurity/MSSQLRelay/actions/workflows/python-publish.yml/badge.svg)](https://github.com/compasssecurity/MSSQLRelay/actions/workflows/python-publish.yml)
-
 Microsoft SQL Relay is an offensive tool for auditing and abusing Microsoft SQL (MSSQL) services.
 
 ## Installation

@@ -14,7 +14,7 @@ setup(
     install_requires=[
         "asn1crypto",
         "cryptography>=37.0",
-        "impacket>0.10.0",
+        "impacket>=0.11.0",
         "ldap3",
         "pyasn1==0.4.8",
         "dnspython",
