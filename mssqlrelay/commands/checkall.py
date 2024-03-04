@@ -12,9 +12,13 @@ class MSSQLInstance:
         self.spn = spn
         self.instance = spn.split("/")[1]
         try:
-            self.hostname = self.instance.split(":")
+            self.hostname = self.instance.split(":")[0]
         except ValueError:
             self.hostname = self.instance
+        try:
+            self.port = self.instance.split(":")[1]
+        except:
+            self.port = 1433
 
 
 class CheckAll:
