@@ -39,7 +39,7 @@ class MSSQLRelay:
         self.username = self.victimtarget.username
         self.password = self.victimtarget.password
         self.victim = self.victimtarget.target_ip
-        self.victim_remote_name=self.victimtarget.hostname,
+        self.victim_remote_name=self.victimtarget.remote_name
         self.hashes = options.hashes
         self.aesKey = options.aes
         self.dc_ip = options.dc_ip
