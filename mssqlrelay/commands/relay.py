@@ -39,6 +39,7 @@ class MSSQLRelay:
         self.username = self.victimtarget.username
         self.password = self.victimtarget.password
         self.victim = self.victimtarget.target_ip
+        self.victim_remote_name=self.victimtarget.hostname,
         self.hashes = options.hashes
         self.aesKey = options.aes
         self.dc_ip = options.dc_ip
@@ -53,7 +54,7 @@ class MSSQLRelay:
 
     def trigger(self):
         logging.info("Authenticating to victim %s" % self.victim)
-        ms_sql = tds.MSSQL(self.victim, int(self.mssql_port))
+        ms_sql = tds.MSSQL(self.victim, int(self.mssql_port), self.victim_remote_name)
         ms_sql.connect()
 
         try:
