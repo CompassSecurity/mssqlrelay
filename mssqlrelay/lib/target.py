@@ -152,6 +152,7 @@ class Target:
         self.lmhash: str = None
         self.nthash: str = None
         self.do_kerberos: bool = False
+        self.no_pass: bool = False
         self.use_sspi: bool = False
         self.windows_auth: bool = True
         self.aes: str = None
@@ -266,6 +267,7 @@ class Target:
         self.nthash = nthash
         self.aes = options.aes
         self.do_kerberos = options.do_kerberos
+        self.no_pass = options.no_pass
         self.use_sspi = options.use_sspi
         self.windows_auth = options.windows_auth
         self.dc_ip = dc_ip

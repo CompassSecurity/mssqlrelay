@@ -206,7 +206,7 @@ class Check:
         if self._connection is not None:
             return self._connection
 
-        self._connection = MSSQL(self.target.target_ip, self.target.mssql_port)
+        self._connection = MSSQL(self.target.remote_name, int(self.target.mssql_port))
         self._connection.connect()
 
         return self._connection
@@ -280,7 +280,7 @@ class Check:
         try:
             success = False
             if self.target.do_kerberos:
-                success = self.connection.kerberos_login(self.target.mssql_db, self.target.username, self.target.password, self.target.domain, hashes=self.target.hashes, aesKey=self.target.aes)
+                success = self.connection.kerberosLogin(self.target.mssql_db, self.target.username, self.target.password, self.target.domain, hashes=self.target.hashes, aesKey=self.target.aes, kdcHost=self.target.dc_ip)
             else:
                 success = self.connection.login(self.target.mssql_db, self.target.username, self.target.password, self.target.domain, hashes=self.target.hashes, useWindowsAuth=self.target.windows_auth)
 
