@@ -87,6 +87,7 @@ class CheckAll:
                     self.target.hashes,
                     remote_name=instance.hostname,
                     do_kerberos=self.target.do_kerberos,
+                    no_pass=self.target.no_pass,
                     use_sspi=self.target.use_sspi,
                     windows_auth=self.target.windows_auth,
                     aes=self.target.aes,
