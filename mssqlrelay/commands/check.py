@@ -206,7 +206,7 @@ class Check:
         if self._connection is not None:
             return self._connection
 
-        self._connection = MSSQL(self.target.remote_name, int(self.target.mssql_port))
+        self._connection = MSSQL(self.target.target_ip, int(self.target.mssql_port), self.target.remote_name)
         self._connection.connect()
 
         return self._connection
