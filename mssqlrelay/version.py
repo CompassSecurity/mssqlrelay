@@ -1,9 +1,9 @@
-import pkg_resources
+from importlib.metadata import version as _get_version, PackageNotFoundError
 from impacket import __path__
 
 try:
-    version = pkg_resources.get_distribution("mssqlrelay").version
-except pkg_resources.DistributionNotFound:
+    version = _get_version("mssqlrelay")
+except PackageNotFoundError:
     version = "?"
     print(
         "Cannot determine MSSQLRelay version. "

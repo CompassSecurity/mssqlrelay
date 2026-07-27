@@ -5,7 +5,7 @@ with open("README.md") as f:
 
 setup(
     name="mssqlrelay",
-    version="1.0",
+    version="1.1",
     license="MIT",
     author="sploutchy",
     url="https://github.com/compasssecurity/mssqlrelay",
